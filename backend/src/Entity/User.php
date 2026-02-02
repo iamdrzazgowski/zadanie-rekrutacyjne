@@ -4,32 +4,30 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+
 
 #[ORM\Entity]
 class User
 {
-    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type:"integer")]
+    #[ORM\Id, ORM\GeneratedValue, ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type:"string", length:255)]
-    #[Assert\NotBlank]
+    #[ORM\Column(length:255)]
     private ?string $firstName = null;
 
-    #[ORM\Column(type:"string", length:255)]
-    #[Assert\NotBlank]
+    #[ORM\Column(length:255)]
     private ?string $lastName = null;
 
     #[ORM\Column(type:"date")]
-    #[Assert\NotBlank]
-    #[Assert\LessThan("today", message:"Data urodzenia musi być w przeszłości")]
     private ?\DateTimeInterface $birthDate = null;
 
     #[ORM\OneToOne(mappedBy:"user", cascade:["persist", "remove"])]
     private ?Contact $contact = null;
 
     #[ORM\OneToMany(mappedBy:"user", targetEntity:Experience::class, cascade:["persist"], orphanRemoval:true)]
-    private $experiences;
+    private Collection $experiences;
 
     public function __construct()
     {

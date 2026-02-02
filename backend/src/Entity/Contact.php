@@ -8,21 +8,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity]
 class Contact
 {
-    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type:"integer")]
+    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: "integer")]
     private ?int $id = null;
 
-    #[ORM\Column(type:"string", length:20)]
-    #[Assert\NotBlank]
-    #[Assert\Regex("/^\+?[0-9]{7,15}$/", message:"Niepoprawny numer telefonu")]
+    #[ORM\Column(type: "string", length: 20)]
     private ?string $phone = null;
 
-    #[ORM\Column(type:"string", length:255)]
-    #[Assert\NotBlank]
-    #[Assert\Email(message:"Niepoprawny email")]
+    #[ORM\Column(type: "string", length: 255)]
     private ?string $email = null;
 
-    #[ORM\OneToOne(inversedBy:"contact")]
-    #[ORM\JoinColumn(nullable:false)]
+    #[ORM\OneToOne(inversedBy: "contact")]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
     // ===== Gettery i Settery =====

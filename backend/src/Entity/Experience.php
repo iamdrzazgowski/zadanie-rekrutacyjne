@@ -8,34 +8,24 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity]
 class Experience
 {
-    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type:"integer")]
+    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: "integer")]
     private ?int $id = null;
 
-    #[ORM\Column(type:"string", length:255)]
-    #[Assert\NotBlank]
+    #[ORM\Column(type: "string", length: 255)]
     private ?string $company = null;
 
-    #[ORM\Column(type:"string", length:255)]
-    #[Assert\NotBlank]
+    #[ORM\Column(type: "string", length: 255)]
     private ?string $position = null;
 
-    #[ORM\Column(type:"date")]
-    #[Assert\NotBlank]
+    #[ORM\Column(type: "date")]
     private ?\DateTimeInterface $dateFrom = null;
 
-    #[ORM\Column(type:"date")]
-    #[Assert\NotBlank]
+    #[ORM\Column(type: "date")]
     private ?\DateTimeInterface $dateTo = null;
 
-    #[ORM\ManyToOne(targetEntity:User::class, inversedBy:"experiences")]
-    #[ORM\JoinColumn(nullable:false)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "experiences")]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
-
-    #[Assert\Expression(
-        "this.getDateFrom() <= this.getDateTo()",
-        message: "Data od nie może być późniejsza niż data do"
-    )]
-    public function isValidDateRange(): bool { return true; }
 
     // ===== Gettery i Settery =====
     public function getId(): ?int { return $this->id; }
