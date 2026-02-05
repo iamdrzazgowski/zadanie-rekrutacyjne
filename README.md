@@ -37,7 +37,7 @@ Aplikacja obsługuje następujące grupy danych:
 
 ### Backend
 
-- Symfony 7.3 – framework PHP
+- Symfony 8.0 – framework PHP
 - Doctrine ORM 3.5 – mapowanie obiektowo-relacyjne
 - PHP 8.2+ – nowoczesny PHP z typami
 - SQLite – baza danych
@@ -47,7 +47,6 @@ Aplikacja obsługuje następujące grupy danych:
 
 - Vue.js 3 – framework JavaScript
 - Vite – narzędzie do budowania aplikacji
-- Axios – komunikacja HTTP z API
 - CSS3 – nowoczesne style wraz z animacjami
 
 
